@@ -2,7 +2,8 @@
 # for information about machine names on private network
 Vagrant.configure("2") do |config|
     config.vm.box = "bento/ubuntu-22.04"
-  
+    #config.vm.box = "generic/ubuntu2204"
+
     config.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y
       sudo apt-get install iputils-ping -y
@@ -11,6 +12,7 @@ Vagrant.configure("2") do |config|
    
     config.vm.define "control" do |control|
       control.vm.box = "bento/ubuntu-22.04"
+      #control.vm.box = "generic/ubuntu2204"
       control.vm.hostname = "control"
       control.vm.network "private_network", ip: "192.168.56.10"
   
