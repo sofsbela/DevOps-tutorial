@@ -1,0 +1,26 @@
+version: '3'
+services:
+  server:
+    build: .
+    ports:
+      - "3080:3080"
+    networks:
+      default:
+        ipv4_address: 192.168.33.10
+  app:
+    build: my-app
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./data:/usr/src/data-backup
+    networks:
+      default:
+        ipv4_address: 192.168.33.11
+    depends_on:
+      - "server"
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.33.0/24
